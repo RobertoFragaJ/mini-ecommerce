@@ -18,4 +18,31 @@ try {
 // cria arquivo .db
 const db = new Database(path.resolve(__dirname, "ecommerce.db"));
 
+// Inicializa tabelas se não existirem
+const createProductsTable = `
+  CREATE TABLE IF NOT EXISTS products (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT,
+    descricao TEXT,
+    preco REAL,
+    quantidade INTEGER,
+    categoria TEXT,
+    ativo INTEGER
+  )
+`;
+
+const createUsersTable = `
+  CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT,
+    email TEXT,
+    senha TEXT,
+    perfil TEXT,
+    ativo INTEGER
+  )
+`;
+
+db.exec(createProductsTable);
+db.exec(createUsersTable);
+
 module.exports = db;
