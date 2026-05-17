@@ -1,4 +1,10 @@
 {
+  "name": "mini-ecommerce-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cd backend && npm install --production && node src/server.js"
+  },
   "dependencies": {
     "better-sqlite3": "^12.10.0"
   }
