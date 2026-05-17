@@ -7,6 +7,10 @@
 </head>
 <body>
 
+    <nav class="top-nav">
+        <a href="index.html">Dashboard</a>
+    </nav>
+
 <header>
   <h1>Gerenciamento de Usuários</h1>
 </header>
@@ -22,8 +26,15 @@
     <input type="text" id="nome" placeholder="Nome" required>
     <input type="email" id="email" placeholder="Email" required>
     <input type="password" id="senha" placeholder="Senha" required>
-    <input type="text" id="perfil" placeholder="Perfil (admin/user)">
-    <input type="number" id="ativo" placeholder="Ativo (1 ou 0)">
+    <select id="perfil" required>
+        <option value="">Selecione um perfil</option>
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+    </select>
+    <select id="ativo" required>
+        <option value="1">Ativo</option>
+        <option value="0">Inativo</option>
+    </select>
 
     <button type="submit">Salvar</button>
 
@@ -33,6 +44,11 @@
 
 <section>
   <h2>Lista de Usuários</h2>
+
+    <section class="search-container">
+        <input type="text" id="search" placeholder="Buscar usuário..." onkeyup="filterUsers()">
+    </section>
+
   <div id="lista" class="grid"></div>
 </section>
 

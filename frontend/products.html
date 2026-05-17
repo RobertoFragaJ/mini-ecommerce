@@ -7,8 +7,12 @@
 </head>
 <body>
 
+    <nav class="top-nav">
+        <a href="index.html">Dashboard</a>
+    </nav>
+
   <header>
-    <h1>Mini E-commerce</h1>
+    <h1>Gerenciamento de Produtos</h1>
   </header>
 
   <section class="form-container">
@@ -33,7 +37,13 @@
 
   <section>
     <h2>Lista de Produtos</h2>
+   
+    <section class="search-container">
+        <input type="text" id="search" placeholder="Buscar produto..." onkeyup="filterProducts()">
+    </section>
+
     <div id="lista" class="grid"></div>
+    <div id="pagination" class="pagination"></div>
   </section>
 
   <!-- MODAL DETALHES -->

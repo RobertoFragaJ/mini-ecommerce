@@ -1,25 +1,70 @@
 const api = "http://localhost:3000/users";
 
+let allUsers = [];
+
 // LISTAR
 async function loadUsers() {
+
   const res = await fetch(api);
+
   const data = await res.json();
 
+  allUsers = data;
+
+  renderUsers(data);
+
+}
+
+function renderUsers(users) {
+
   const lista = document.getElementById("lista");
+
   lista.innerHTML = "";
 
-  data.forEach(u => {
+  users.forEach(u => {
+
     lista.innerHTML += `
       <div class="card">
+
         <h3>${u.nome}</h3>
+
         <p>${u.email}</p>
 
-        <button onclick="viewUser(${u.id})">Ver</button>
-        <button onclick="editUser(${u.id})">Editar</button>
-        <button onclick="deleteUser(${u.id})">Excluir</button>
+        <p>Perfil: ${u.perfil}</p>
+
+        <button onclick="viewUser(${u.id})">
+          Ver
+        </button>
+
+        <button onclick="editUser(${u.id})">
+          Editar
+        </button>
+
+        <button onclick="deleteUser(${u.id})">
+          Excluir
+        </button>
+
       </div>
     `;
+
   });
+
+}
+
+function filterUsers() {
+
+  const value =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase();
+
+  const filtered = allUsers.filter(u =>
+    u.nome.toLowerCase().includes(value)
+  );
+
+  renderUsers(filtered);
+
 }
 
 // CREATE / UPDATE

@@ -1,49 +1,109 @@
-body {
-  font-family: Arial;
+* {
   margin: 0;
-  background: #f4f4f4;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
+body {
+  background: #f5f7fb;
+  color: #333;
+}
+
+/* HEADER */
 header {
-  background: #333;
+  background: linear-gradient(135deg, #4a90e2, #357ABD);
   color: white;
-  padding: 15px;
+  padding: 20px;
   text-align: center;
 }
 
+/* TITULOS */
+h1, h2 {
+  margin: 20px;
+}
+
+/* FORM */
 .form-container {
   background: white;
-  padding: 15px;
-  margin: 20px;
-  border-radius: 10px;
+  margin: 20px auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-input {
-  display: block;
-  margin: 8px 0;
-  padding: 8px;
+input, select {
   width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: 0.2s;
 }
 
+input:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+/* BOTÃO */
 button {
-  padding: 8px;
-  margin: 5px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  transition: 0.2s;
+  margin-top: 10px;
 }
 
+button:hover {
+  transform: scale(1.03);
+}
+
+/* GRID */
 .grid {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
   padding: 20px;
 }
 
+/* CARD */
 .card {
   background: white;
-  padding: 10px;
-  border-radius: 10px;
-  width: 200px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* BOTÕES ESPECÍFICOS */
+.card button {
+  margin: 5px 3px;
+}
+
+/* VER */
+.card button:nth-child(2) {
+  background: #3498db;
+  color: white;
+}
+
+/* EDITAR */
+.card button:nth-child(3) {
+  background: #f39c12;
+  color: white;
+}
+
+/* EXCLUIR */
+.card button:nth-child(4) {
+  background: #e74c3c;
+  color: white;
 }
 
 /* MODAL */
@@ -54,16 +114,130 @@ button {
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
   background: white;
-  padding: 20px;
-  margin: 10% auto;
+  padding: 25px;
+  border-radius: 12px;
   width: 300px;
-  border-radius: 10px;
+  text-align: center;
 }
 
 .hidden {
   display: none;
+}
+
+/* DASHBOARD */
+
+.dashboard-header {
+  background: linear-gradient(135deg, #4a90e2, #357ABD);
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.dashboard-header p {
+  margin-top: 10px;
+  opacity: 0.9;
+}
+
+.dashboard {
+  min-height: 70vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  flex-wrap: wrap;
+
+  padding: 40px 20px;
+}
+
+.dashboard-card {
+  background: white;
+
+  width: 320px;
+
+  padding: 30px;
+
+  border-radius: 15px;
+
+  text-align: center;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+  transition: 0.3s;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-8px);
+}
+
+.dashboard-card h2 {
+  margin-bottom: 15px;
+}
+
+.dashboard-card p {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.dashboard-card button {
+  background: #4a90e2;
+  color: white;
+  width: 100%;
+}
+
+.dashboard-card button:hover {
+  background: #357ABD;
+}
+
+/* NAVBAR */
+
+.top-nav {
+  background: #222;
+  padding: 12px 20px;
+}
+
+.top-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* BUSCA */
+
+.search-container {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-container input {
+  background: white;
+}
+
+/* PAGINAÇÃO */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+  margin: 20px;
+}
+
+.pagination button {
+  background: #4a90e2;
+  color: white;
+}
+
+.pagination button:disabled {
+  background: #999;
+  cursor: not-allowed;
 }
