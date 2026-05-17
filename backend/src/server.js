@@ -7,7 +7,9 @@ const app = express();
 const productRoutes = require("./modules/products/productRoutes");
 const userRoutes = require("./modules/users/userRoutes");
 
-app.use(cors());
+app.use(cors({
+  origin: "*"
+}));
 app.use(express.json());
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
@@ -16,6 +18,8 @@ app.get("/", (req, res) => {
   res.send("API funcionando");
 });
 
-app.listen(3000, () => {
-  console.log("Servidor rodando na porta 3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log("Servidor rodando na porta " + PORT);
 });
