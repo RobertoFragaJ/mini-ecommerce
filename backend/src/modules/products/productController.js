@@ -1,42 +1,31 @@
 const repository = require("./productRepository");
 
-// CREATE
+exports.list = (req, res) => {
+  const products = repository.getAll();
+  res.json(products);
+};
+
+exports.getById = (req, res) => {
+  const product = repository.getById(req.params.id);
+
+  if (!product) {
+    return res.status(404).json({ message: "Produto não encontrado" });
+  }
+
+  res.json(product);
+};
+
 exports.create = (req, res) => {
   repository.create(req.body);
-  res.json({ message: "Produto criado" });
+  res.json({ message: "Produto criado com sucesso" });
 };
 
-// READ ALL
-exports.list = (req, res) => {
-  repository.getAll((data) => {
-    res.json(data);
-  });
-};
-
-// READ BY ID
-exports.getById = (req, res) => {
-  const id = req.params.id;
-
-  repository.getById(id, (data) => {
-    if (!data) {
-      return res.status(404).json({ message: "Produto não encontrado" });
-    }
-    res.json(data);
-  });
-};
-
-// UPDATE
 exports.update = (req, res) => {
-  const id = req.params.id;
-
-  repository.update(id, req.body);
+  repository.update(req.params.id, req.body);
   res.json({ message: "Produto atualizado" });
 };
 
-// DELETE
 exports.remove = (req, res) => {
-  const id = req.params.id;
-
-  repository.remove(id);
+  repository.remove(req.params.id);
   res.json({ message: "Produto removido" });
 };

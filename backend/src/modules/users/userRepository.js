@@ -1,56 +1,67 @@
 const db = require("../../database/db");
 
+//
 // CREATE
+//
 exports.create = (user) => {
-  db.run(
-    `INSERT INTO users (nome, email, senha, perfil, ativo)
-     VALUES (?, ?, ?, ?, ?)`,
-    [
-      user.nome,
-      user.email,
-      user.senha,
-      user.perfil,
-      user.ativo
-    ]
+  const stmt = db.prepare(`
+    INSERT INTO users (nome, email, senha, perfil, ativo)
+    VALUES (?, ?, ?, ?, ?)
+  `);
+
+  return stmt.run(
+    user.nome,
+    user.email,
+    user.senha,
+    user.perfil,
+    user.ativo
   );
 };
 
+//
 // READ ALL
-exports.getAll = (callback) => {
-  db.all("SELECT * FROM users", [], (err, rows) => {
-    callback(rows);
-  });
+//
+exports.getAll = () => {
+  const stmt = db.prepare("SELECT * FROM users");
+  return stmt.all();
 };
 
+//
 // READ BY ID
-exports.getById = (id, callback) => {
-  db.get("SELECT * FROM users WHERE id = ?", [id], (err, row) => {
-    callback(row);
-  });
+//
+exports.getById = (id) => {
+  const stmt = db.prepare("SELECT * FROM users WHERE id = ?");
+  return stmt.get(id);
 };
 
+//
 // UPDATE
+//
 exports.update = (id, user) => {
-  db.run(
-    `UPDATE users SET
+  const stmt = db.prepare(`
+    UPDATE users SET
       nome = ?,
       email = ?,
       senha = ?,
       perfil = ?,
       ativo = ?
-     WHERE id = ?`,
-    [
-      user.nome,
-      user.email,
-      user.senha,
-      user.perfil,
-      user.ativo,
-      id
-    ]
+    WHERE id = ?
+  `);
+
+  return stmt.run(
+    user.nome,
+    user.email,
+    user.senha,
+    user.perfil,
+    user.ativo,
+    id
   );
 };
 
+//
 // DELETE
+//
 exports.remove = (id) => {
-  db.run("DELETE FROM users WHERE id = ?", [id]);
+  const stmt = db.prepare("DELETE FROM users WHERE id = ?");
+  return stmt.run(id);
 };
