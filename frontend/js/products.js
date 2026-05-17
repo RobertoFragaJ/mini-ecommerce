@@ -1,4 +1,4 @@
-const api = "http://localhost:3000/products";
+const api = "https://mini-ecommerce-production-d2d5.up.railway.app/products";
 
 let allProducts = [];
 
@@ -147,24 +147,27 @@ document.getElementById("productForm").addEventListener("submit", async (e) => {
   const product = {
     nome: document.getElementById("nome").value,
     descricao: document.getElementById("descricao").value,
-    preco: document.getElementById("preco").value,
-    estoque: document.getElementById("estoque").value,
+    preco: Number(document.getElementById("preco").value),
+    quantidade: Number(document.getElementById("estoque").value),
     categoria: document.getElementById("categoria").value,
     ativo: 1
   };
 
-  if (id) {
-    await fetch(`${api}/${id}`, {
-      method: "PUT",
+  try {
+    const response = await fetch(id ? `${api}/${id}` : api, {
+      method: id ? "PUT" : "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(product)
     });
-  } else {
-    await fetch(api, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(product)
-    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`API error ${response.status}: ${errorText}`);
+    }
+  } catch (error) {
+    console.error("Falha ao salvar produto:", error);
+    alert("Não foi possível salvar o produto. Veja o console para mais detalhes.");
+    return;
   }
 
   e.target.reset();
