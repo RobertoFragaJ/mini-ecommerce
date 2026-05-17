@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Usuários</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <h1>Gerenciamento de Usuários</h1>
+</header>
+
+<section class="form-container">
+
+  <h2>Cadastrar Usuário</h2>
+
+  <form id="userForm">
+
+    <input type="hidden" id="id">
+
+    <input type="text" id="nome" placeholder="Nome" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="senha" placeholder="Senha" required>
+    <input type="text" id="perfil" placeholder="Perfil (admin/user)">
+    <input type="number" id="ativo" placeholder="Ativo (1 ou 0)">
+
+    <button type="submit">Salvar</button>
+
+  </form>
+
+</section>
+
+<section>
+  <h2>Lista de Usuários</h2>
+  <div id="lista" class="grid"></div>
+</section>
+
+<!-- MODAL DETALHES -->
+<div id="modal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Detalhes do Usuário</h2>
+    <p id="detalhes"></p>
+    <button onclick="closeModal()">Fechar</button>
+  </div>
+</div>
+
+<script src="js/users.js"></script>
+
+</body>
+</html>
