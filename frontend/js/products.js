@@ -195,7 +195,7 @@ async function editProduct(id) {
   document.getElementById("nome").value = p.nome;
   document.getElementById("descricao").value = p.descricao;
   document.getElementById("preco").value = p.preco;
-  document.getElementById("estoque").value = p.estoque;
+  document.getElementById("estoque").value = p.quantidade;
   document.getElementById("categoria").value = p.categoria;
 }
 
@@ -208,7 +208,7 @@ async function viewProduct(id) {
     Nome: ${p.nome}<br>
     Descrição: ${p.descricao}<br>
     Preço: R$ ${p.preco}<br>
-    Estoque: ${p.estoque}<br>
+    Estoque: ${p.quantidade}<br>
     Categoria: ${p.categoria}
   `;
 

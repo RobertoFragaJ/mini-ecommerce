@@ -1,4 +1,4 @@
-const api = "http://localhost:3000/users";
+const api = "https://mini-ecommerce-production-d2d5.up.railway.app/users";
 
 let allUsers = [];
 
@@ -78,21 +78,24 @@ document.getElementById("userForm").addEventListener("submit", async (e) => {
     email: document.getElementById("email").value,
     senha: document.getElementById("senha").value,
     perfil: document.getElementById("perfil").value,
-    ativo: document.getElementById("ativo").value
+    ativo: Number(document.getElementById("ativo").value)
   };
 
-  if (id) {
-    await fetch(`${api}/${id}`, {
-      method: "PUT",
+  try {
+    const response = await fetch(id ? `${api}/${id}` : api, {
+      method: id ? "PUT" : "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user)
     });
-  } else {
-    await fetch(api, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(user)
-    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`API error ${response.status}: ${errorText}`);
+    }
+  } catch (error) {
+    console.error("Falha ao salvar usuário:", error);
+    alert("Não foi possível salvar o usuário. Veja o console para mais detalhes.");
+    return;
   }
 
   e.target.reset();
