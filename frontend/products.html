@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Produtos</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Mini E-commerce</h1>
+  </header>
+
+  <section class="form-container">
+
+    <h2>Cadastrar Produto</h2>
+
+    <form id="productForm">
+
+      <input type="hidden" id="id">
+
+      <input type="text" id="nome" placeholder="Nome" required>
+      <input type="text" id="descricao" placeholder="Descrição">
+      <input type="number" id="preco" placeholder="Preço" required>
+      <input type="number" id="estoque" placeholder="Estoque">
+      <input type="text" id="categoria" placeholder="Categoria">
+
+      <button type="submit">Salvar</button>
+
+    </form>
+
+  </section>
+
+  <section>
+    <h2>Lista de Produtos</h2>
+    <div id="lista" class="grid"></div>
+  </section>
+
+  <!-- MODAL DETALHES -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Detalhes do Produto</h2>
+      <p id="detalhes"></p>
+      <button onclick="closeModal()">Fechar</button>
+    </div>
+  </div>
+
+  <script src="js/products.js"></script>
+
+</body>
+</html>
